@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import {Hello} from "./components/Hello";
 
-import "./style.scss"
+import "../assets/style.scss"
 
 let catalogLocation : [number, string, boolean] = [1, "Test", true];
 catalogLocation[5] = "Test2";
