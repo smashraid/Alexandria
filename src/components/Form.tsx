@@ -7,6 +7,7 @@ interface FormProps {
 interface FormState {
     value: string;
     description: string;
+    flavor: string;
 }
 
 export class NameForm extends React.Component<FormProps, FormState> {
@@ -14,9 +15,12 @@ export class NameForm extends React.Component<FormProps, FormState> {
         super(props)
         this.state = {
             value: "",
-            description: ""
+            description: "",
+            flavor: "lime"
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleTexAreaChange = this.handleTexAreaChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -30,8 +34,13 @@ export class NameForm extends React.Component<FormProps, FormState> {
         this.setState({ description: e.target.value.toUpperCase() });
     }
 
+    handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(e.target.name, e.target.value)
+        this.setState({ flavor: e.target.value.toUpperCase() });
+    }
+
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        alert("a name was submitted: " + this.state.value);
+        alert(`form was submitted: ${JSON.stringify(this.state)}`);
         e.preventDefault();
     }
 
@@ -45,6 +54,15 @@ export class NameForm extends React.Component<FormProps, FormState> {
                 <label>
                     Description
                     <textarea name="description" value={this.state.description} onChange={this.handleTexAreaChange} ></textarea>
+                </label>
+                <label>
+                    Pick your favorite flavor:
+                    <select name="flavor" value={this.state.flavor} onChange={this.handleSelectChange} >
+                        <option value="grapefruit">Grapefruit</option>
+                        <option value="lime">Lime</option>
+                        <option value="coconut">Coconut</option>
+                        <option value="mango">Mango</option>
+                    </select>
                 </label>
                 <input type="submit" value="Submit" />
             </form>
