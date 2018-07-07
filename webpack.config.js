@@ -1,9 +1,9 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
 
 module.exports = {
+    mode: "development",
     entry: [
         //"./node_modules/react/dist/react.js",
         //"./node_modules/react-dom/dist/react-dom.js",
@@ -37,11 +37,11 @@ module.exports = {
         //     hash: true,
         //     template: "./src/index.html"
         // }),
-        new ExtractTextPlugin({
-            filename: "[name].css",
-            disable: false,
-            allChunks: true
-        }),
+        // new ExtractTextPlugin({
+        //     filename: "[name].css",
+        //     disable: false,
+        //     allChunks: true
+        // }),
         // new webpack.LoaderOptionsPlugin({
         //     minimize: true,
         //     debug: false
@@ -57,6 +57,7 @@ module.exports = {
         //     },
         //     comments: false
         // })
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules: [
@@ -112,7 +113,8 @@ module.exports = {
     },
     devServer: {
         compress: false,
-        port: 3000
+        port: 3000,
+        hot: true
     },
 
     // When importing a module whose path matches one of the following, just

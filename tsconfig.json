@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "build/dist",
         "module": "commonjs",
-        "target": "es5",
+        "target": "es6",
         "lib": [
             "es6",
             "dom"
@@ -20,6 +20,7 @@
     "exclude": [
         "node_modules",
         "build",
+        "dist",
         "scripts",
         "acceptance-tests",
         "webpack",
