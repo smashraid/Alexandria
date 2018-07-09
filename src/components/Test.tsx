@@ -3,6 +3,7 @@ import * as React from "react";
 export interface TestProps {
     name: string;
     email: string;
+    leftContent?: React.ReactNode
 }
 
 export interface TestState {
@@ -45,6 +46,12 @@ export class Test extends React.Component<TestProps, TestState> {
                     {this.nums.map((n, i) => <li key={n.toString() + i}>{n}</li>)}
                 </ul>
                 <button onClick={(e) => this.titleUpdate(e, 5)}>Click</button>
+                <div>
+                    {this.props.children}
+                </div>
+                <div>
+                    {this.props.leftContent}
+                </div>
             </div>
         );
     }

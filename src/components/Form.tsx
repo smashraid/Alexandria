@@ -19,17 +19,17 @@ export class NameForm extends React.Component<FormProps, FormState> {
             flavor: "lime"
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleTexAreaChange = this.handleTexAreaChange.bind(this);
+        this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.name, e.target);
+        console.log(e.target.name, e.target.value);
         this.setState({ value: e.target.value.toUpperCase() });
     }
 
-    handleTexAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         console.log(e.target.name, e.target.value)
         this.setState({ description: e.target.value.toUpperCase() });
     }
@@ -53,7 +53,7 @@ export class NameForm extends React.Component<FormProps, FormState> {
                 </label>
                 <label>
                     Description
-                    <textarea name="description" value={this.state.description} onChange={this.handleTexAreaChange} ></textarea>
+                    <textarea name="description" value={this.state.description} onChange={this.handleTextAreaChange} ></textarea>
                 </label>
                 <label>
                     Pick your favorite flavor:
