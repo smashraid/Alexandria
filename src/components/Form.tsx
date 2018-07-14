@@ -47,24 +47,36 @@ export class NameForm extends React.Component<FormProps, FormState> {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
-                </label>
-                <label>
-                    Description
-                    <textarea name="description" value={this.state.description} onChange={this.handleTextAreaChange} ></textarea>
-                </label>
-                <label>
-                    Pick your favorite flavor:
-                    <select name="flavor" value={this.state.flavor} onChange={this.handleSelectChange} >
-                        <option value="grapefruit">Grapefruit</option>
-                        <option value="lime">Lime</option>
-                        <option value="coconut">Coconut</option>
-                        <option value="mango">Mango</option>
-                    </select>
-                </label>
-                <input type="submit" value="Submit" />
+                <div className="row">
+                    <div className="col-sm-12 col-md-3">
+                        <label>Name:</label>
+                    </div>
+                    <div className="col-sm-12 col-md">
+                        <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 col-md-3">
+                        <label>Description:</label>
+                    </div>
+                    <div className="col-sm-12 col-md">
+                        <textarea name="description" value={this.state.description} onChange={this.handleTextAreaChange} ></textarea>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 col-md-3">
+                        <label>Pick your favorite flavor:</label>
+                    </div>
+                    <div className="col-sm-12 col-md">
+                        <select name="flavor" value={this.state.flavor} onChange={this.handleSelectChange} >
+                            <option value="grapefruit">Grapefruit</option>
+                            <option value="lime">Lime</option>
+                            <option value="coconut">Coconut</option>
+                            <option value="mango">Mango</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" className="primary" value="Submit" />
             </form>
         );
     }
