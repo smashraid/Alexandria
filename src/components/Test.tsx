@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { ThemeContext, UserContext } from "../util";
 
-import { Test2 } from "./Test2";
+import { Test2, Card } from "./Test2";
 
 export interface TestProps {
     name: string;
@@ -14,10 +14,11 @@ export interface TestState {
     title: string;
 }
 
-
 export class Test extends React.Component<TestProps, TestState> {
     nums: Array<number> = [1, 2, 3, 4, 5];
     step: React.RefObject<HTMLInputElement>;
+    amount: React.RefObject<HTMLLabelElement>;
+    panel: React.RefObject<HTMLDivElement>;
 
     constructor(props: TestProps) {
         super(props);
@@ -27,6 +28,8 @@ export class Test extends React.Component<TestProps, TestState> {
         this.titleUpdate = this.titleUpdate.bind(this);
         this.jump = this.jump.bind(this);
         this.step = React.createRef();
+        this.amount = React.createRef();
+        this.panel = React.createRef();        
     }
 
     componentDidMount() {
@@ -37,8 +40,15 @@ export class Test extends React.Component<TestProps, TestState> {
 
     }
 
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+        console.log("error", error);
+        console.log("errorInfo", errorInfo);
+    }
+
     jump() {
         this.step.current!.value = "Oh Peralta";
+        this.amount.current!.innerText ="Gianfra";
+        this.panel.current!.style.backgroundColor = "red";        
     }
 
     titleUpdate = (e: React.MouseEvent<HTMLButtonElement>, id: number): void => {
@@ -47,10 +57,10 @@ export class Test extends React.Component<TestProps, TestState> {
         this.setState({
             title: "Learning State!"
         });
-        this.jump();
-    }
+        this.jump();        
+    }    
 
-    render(): React.ReactChild {
+    render(): React.ReactNode {
         return (
             <ThemeContext.Provider value="dark">
                 <UserContext.Provider value="peraltin" >
@@ -60,15 +70,18 @@ export class Test extends React.Component<TestProps, TestState> {
                         <ul>
                             {this.nums.map((n, i) => <li key={n.toString() + i}>{n}</li>)}
                         </ul>
-                        <input type="text" name="step" id="step" ref={this.step} />
-                        <button onClick={(e) => this.titleUpdate(e, 5)}>Click</button>
+                        <div className="input-group">
+                            <input type="text" name="step" id="step" ref={this.step} />
+                            <button onClick={(e) => this.titleUpdate(e, 5)}>Click</button>
+                        </div>
                         <div>
                             {this.props.children}
                         </div>
                         <div>
                             {this.props.leftContent}
-                        </div>
-                        <Test2 theme={this.state.title} />
+                        </div>                        
+                        <Test2 theme={this.state.title} refAmount={this.amount} />
+                        <Card ref={this.panel} title="Card1" content="This is a basic card with some sample content." />
                     </div>
                 </UserContext.Provider>
             </ThemeContext.Provider>

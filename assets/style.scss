@@ -11,6 +11,17 @@ ul {
     }
 }
 
-#example {
-    max-width: 760px;
+.main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  html {
+     font-size: 16px;
+  }
+}
+
+.text-center {
+    text-align: center;
 }

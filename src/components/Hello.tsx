@@ -12,5 +12,6 @@ export const Hello = (props: HelloProps) => (
     <div>
         Hello from {props.compiler} and {props.framework}
         <Test name="Saulo" email="saulo.tsuchida@cignium.com" leftContent={<NameForm />} />
+        
     </div>
 );
